@@ -9,7 +9,7 @@
  * @link         https://tuning-soft.ru/shop/api.core/
  *
  * @author       Kuchkovsky Anton
- * @copyright    © 2009-2018 Tuning-Soft
+ * @copyright    Â© 2009-2018 Tuning-Soft
  *
  */
 

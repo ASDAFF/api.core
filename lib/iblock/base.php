@@ -38,11 +38,11 @@ abstract class Base extends \CBitrixComponent
 	protected $offerPropCodes   = array();
 
 	/** @var array Array of ids to show directly */
-	protected $iblockProducts    = array(); //Массив ИБ с ID элементов
-	protected $elements          = array(); //Массив елементов ИБ без OFFERS
-	protected $elementLinks      = array(); //Ссылки на элементы из $this->elements
-	protected $productWithOffers = array(); //Массив ИБ с ID торговых предложений
-	protected $productWithPrices = array(); //Массив ID простых товаров (TYPE_PRODUCT|TYPE_SET|TYPE_SKU)
+	protected $iblockProducts    = array(); //РњР°СЃСЃРёРІ РР‘ СЃ ID СЌР»РµРјРµРЅС‚РѕРІ
+	protected $elements          = array(); //РњР°СЃСЃРёРІ РµР»РµРјРµРЅС‚РѕРІ РР‘ Р±РµР· OFFERS
+	protected $elementLinks      = array(); //РЎСЃС‹Р»РєРё РЅР° СЌР»РµРјРµРЅС‚С‹ РёР· $this->elements
+	protected $productWithOffers = array(); //РњР°СЃСЃРёРІ РР‘ СЃ ID С‚РѕСЂРіРѕРІС‹С… РїСЂРµРґР»РѕР¶РµРЅРёР№
+	protected $productWithPrices = array(); //РњР°СЃСЃРёРІ ID РїСЂРѕСЃС‚С‹С… С‚РѕРІР°СЂРѕРІ (TYPE_PRODUCT|TYPE_SET|TYPE_SKU)
 
 	/** @var array Item prices (new format) */
 	protected $prices          = array();
@@ -107,7 +107,7 @@ abstract class Base extends \CBitrixComponent
 		$params['DEBUG_DATA']   = false;
 		$params['DEBUG_FILTER'] = false;
 
-		//-- Минимальные параметры --//
+		//-- РњРёРЅРёРјР°Р»СЊРЅС‹Рµ РїР°СЂР°РјРµС‚СЂС‹ --//
 		$params['IBLOCK_TYPE']          = (string)$profile['IBLOCK_TYPE_ID'];
 		$params['IBLOCK_ID']            = (int)$profile['IBLOCK_ID'];
 		$params['ELEMENT_ID']           = array();
@@ -120,23 +120,23 @@ abstract class Base extends \CBitrixComponent
 		$params['OFFERS_PROPERTY_CODE'] = $this->getOfferProps();
 		$params['DETAIL_URL']           = '';
 
-		//-- Цены --//
-		$params['USE_PRICE_COUNT']      = $profile['USE_PRICE_COUNT'] == 'Y' ? 'Y' : 'N'; //Использовать вывод цен с диапазонами
-		$params['SHOW_PRICE_COUNT']     = 1; //Выводить цены для количества
-		$params['PRICE_VAT_INCLUDE']    = $profile['PRICE_VAT_INCLUDE'] == 'Y' ? 'Y' : 'N'; //Включать НДС в цену
-		$params['PRICE_VAT_SHOW_VALUE'] = $profile['PRICE_VAT_SHOW_VALUE'] == 'Y' ? 'Y' : 'N'; //Отображать значение НДС
-		$params['CONVERT_CURRENCY']     = $profile['CONVERT_CURRENCY'] == 'Y' ? 'Y' : 'N'; //Показывать цены в одной валюте
-		$params['CURRENCY_ID']          = $profile['CURRENCY_ID'] ? $profile['CURRENCY_ID'] : 'RUB'; //Валюта, в которую будут сконвертированы цены
+		//-- Р¦РµРЅС‹ --//
+		$params['USE_PRICE_COUNT']      = $profile['USE_PRICE_COUNT'] == 'Y' ? 'Y' : 'N'; //РСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РІС‹РІРѕРґ С†РµРЅ СЃ РґРёР°РїР°Р·РѕРЅР°РјРё
+		$params['SHOW_PRICE_COUNT']     = 1; //Р’С‹РІРѕРґРёС‚СЊ С†РµРЅС‹ РґР»СЏ РєРѕР»РёС‡РµСЃС‚РІР°
+		$params['PRICE_VAT_INCLUDE']    = $profile['PRICE_VAT_INCLUDE'] == 'Y' ? 'Y' : 'N'; //Р’РєР»СЋС‡Р°С‚СЊ РќР”РЎ РІ С†РµРЅСѓ
+		$params['PRICE_VAT_SHOW_VALUE'] = $profile['PRICE_VAT_SHOW_VALUE'] == 'Y' ? 'Y' : 'N'; //РћС‚РѕР±СЂР°Р¶Р°С‚СЊ Р·РЅР°С‡РµРЅРёРµ РќР”РЎ
+		$params['CONVERT_CURRENCY']     = $profile['CONVERT_CURRENCY'] == 'Y' ? 'Y' : 'N'; //РџРѕРєР°Р·С‹РІР°С‚СЊ С†РµРЅС‹ РІ РѕРґРЅРѕР№ РІР°Р»СЋС‚Рµ
+		$params['CURRENCY_ID']          = $profile['CURRENCY_ID'] ? $profile['CURRENCY_ID'] : 'RUB'; //Р’Р°Р»СЋС‚Р°, РІ РєРѕС‚РѕСЂСѓСЋ Р±СѓРґСѓС‚ СЃРєРѕРЅРІРµСЂС‚РёСЂРѕРІР°РЅС‹ С†РµРЅС‹
 
-		//-- Привязка к сайту --//
+		//-- РџСЂРёРІСЏР·РєР° Рє СЃР°Р№С‚Сѓ --//
 		if($profile['SITE_ID'])
 			$this->siteId = trim($profile['SITE_ID']);
 
 
-		//-- Если установлен модуль "Торговый каталог" --//
+		//-- Р•СЃР»Рё СѓСЃС‚Р°РЅРѕРІР»РµРЅ РјРѕРґСѓР»СЊ "РўРѕСЂРіРѕРІС‹Р№ РєР°С‚Р°Р»РѕРі" --//
 		if($this->useCatalog) {
 
-			//Типы цен
+			//РўРёРїС‹ С†РµРЅ
 			if($priceTypeId = intval($profile["PRICE_TYPE"])) {
 				if($priceType = Catalog\GroupTable::getRowById($priceTypeId)) {
 					$params['PRICE_CODE'][] = $priceType['NAME'];
@@ -890,7 +890,7 @@ abstract class Base extends \CBitrixComponent
 			 $selectFields
 		);
 
-		//Подсчет всего результата для прогресса
+		//РџРѕРґСЃС‡РµС‚ РІСЃРµРіРѕ СЂРµР·СѓР»СЊС‚Р°С‚Р° РґР»СЏ РїСЂРѕРіСЂРµСЃСЃР°
 		if(!$this->arResult['ALL_ELEMENTS_COUNT']) {
 			$countFilter = $arFilter;
 			unset($countFilter['>ID']);
@@ -1196,7 +1196,7 @@ abstract class Base extends \CBitrixComponent
 			$offer['CAN_BUY'] = $curElement['ACTIVE'] === 'Y' && $offer['CAN_BUY'];
 
 
-			//Здесь подставим поля элемента в поля ТП, если в ТП их нет
+			//Р—РґРµСЃСЊ РїРѕРґСЃС‚Р°РІРёРј РїРѕР»СЏ СЌР»РµРјРµРЅС‚Р° РІ РїРѕР»СЏ РўРџ, РµСЃР»Рё РІ РўРџ РёС… РЅРµС‚
 
 			if(!$offer['IPROPERTY_VALUES']) {
 				$offer['IPROPERTY_VALUES'] = $curElement['IPROPERTY_VALUES'];
@@ -1792,7 +1792,7 @@ abstract class Base extends \CBitrixComponent
 		}
 	}
 
-	//TODO: Проверить работу метода
+	//TODO: РџСЂРѕРІРµСЂРёС‚СЊ СЂР°Р±РѕС‚Сѓ РјРµС‚РѕРґР°
 	protected
 	function initPricesQuery()
 	{

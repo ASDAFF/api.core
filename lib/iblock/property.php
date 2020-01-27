@@ -232,7 +232,7 @@ class Property
 
 
 				if('Y' === $property['MULTIPLE']) {
-					//TODO: Îðèãèíàë çíà÷åíèé ñâîéñòâà
+					//TODO: ÐžÑ€Ð¸Ð³Ð¸Ð½Ð°Ð» Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ð¹ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð°
 					//$elementValues[ $code ]['PROPERTY_VALUE']    = array();
 					$elementValues[ $code ]['PROPERTY_VALUE_ID'] = false;
 
@@ -305,7 +305,7 @@ class Property
 							}
 						}
 
-						//Ñâîéñòâî: Ïðèâÿçêà ê ýëåìåíòàì
+						//Ð¡Ð²Ð¾Ð¹ÑÑ‚Ð²Ð¾: ÐŸÑ€Ð¸Ð²ÑÐ·ÐºÐ° Ðº ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°Ð¼
 						if($property['PROPERTY_TYPE'] == Iblock\PropertyTable::TYPE_ELEMENT) {
 							if(empty($property['USER_TYPE'])) {
 
@@ -462,7 +462,7 @@ class Property
 				}
 				else {
 					$elementValues[ $code ]['VALUE_ENUM'] = ($iblockExtVersion ? '' : null);
-					//Îðèãèíàë çíà÷åíèé ñâîéñòâà
+					//ÐžÑ€Ð¸Ð³Ð¸Ð½Ð°Ð» Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ð¹ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²Ð°
 					//$elementValues[ $code ]['PROPERTY_VALUE']    = false;
 					$elementValues[ $code ]['PROPERTY_VALUE_ID'] = ($iblockExtVersion ? $elementID . ':' . $property['ID'] : null);
 
@@ -519,7 +519,7 @@ class Property
 							}
 						}
 
-						//Ñâîéñòâî: Ïðèâÿçêà ê ýëåìåíòàì
+						//Ð¡Ð²Ð¾Ð¹ÑÑ‚Ð²Ð¾: ÐŸÑ€Ð¸Ð²ÑÐ·ÐºÐ° Ðº ÑÐ»ÐµÐ¼ÐµÐ½Ñ‚Ð°Ð¼
 						if($property['PROPERTY_TYPE'] == Iblock\PropertyTable::TYPE_ELEMENT) {
 							if(empty($property['USER_TYPE'])) {
 
@@ -581,7 +581,7 @@ class Property
 
 
 
-				//!Îáÿçàòåëüíî íóæíî äëÿ êàòàëîæíûõ óñëîâèé USE_CONDITIONS ïî çíà÷åíèþ ñâîéñòâ
+				//!ÐžÐ±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð½ÑƒÐ¶Ð½Ð¾ Ð´Ð»Ñ ÐºÐ°Ñ‚Ð°Ð»Ð¾Ð¶Ð½Ñ‹Ñ… ÑƒÑÐ»Ð¾Ð²Ð¸Ð¹ USE_CONDITIONS Ð¿Ð¾ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÑŽ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²
 				//(((isset($arItem['PROPERTY_520_VALUE']) && in_array(113, $arItem['PROPERTY_520_VALUE']))))
 				if($result[ $elementID ]) {
 					$result[ $elementID ][ 'PROPERTY_' . $property['ID'] . '_VALUE' ] = $elementValues[ $code ]['~VALUE'];
@@ -648,12 +648,12 @@ class Property
 									$element['DISPLAY_PROPERTIES'][ $pid ] = \CIBlockFormatProperties::GetDisplayValue($element, $prop, 'catalog_out');
 								}
 
-								//Îáÿçàòåëüíî íóæíî äëÿ êàòàëîæíûõ óñëîâèé USE_CONDITIONS ïî çíà÷åíèþ ñâîéñòâ
+								//ÐžÐ±ÑÐ·Ð°Ñ‚ÐµÐ»ÑŒÐ½Ð¾ Ð½ÑƒÐ¶Ð½Ð¾ Ð´Ð»Ñ ÐºÐ°Ñ‚Ð°Ð»Ð¾Ð¶Ð½Ñ‹Ñ… ÑƒÑÐ»Ð¾Ð²Ð¸Ð¹ USE_CONDITIONS Ð¿Ð¾ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸ÑŽ ÑÐ²Ð¾Ð¹ÑÑ‚Ð²
 								//(((isset($arItem['PROPERTY_520_VALUE']) && in_array(113, $arItem['PROPERTY_520_VALUE']))))
 								if($dispProp = $element['PROPERTIES'][ $pid ]) {
 
-									//Ôèêñ äëÿ ñâîéñòâ òèïà ñïèñîê
-									//åñëè âûáðàíî îäíî çíà÷åíèå ñïèñêà, â çíà÷åíèè áóäåò ñòðîêà, à íå ìàññèâ, à $obCond->Generate() ñìîòðèò ID çíà÷åíèÿ â ìàññèâå èñïîëüçóÿ in_array()
+									//Ð¤Ð¸ÐºÑ Ð´Ð»Ñ ÑÐ²Ð¾Ð¹ÑÑ‚Ð² Ñ‚Ð¸Ð¿Ð° ÑÐ¿Ð¸ÑÐ¾Ðº
+									//ÐµÑÐ»Ð¸ Ð²Ñ‹Ð±Ñ€Ð°Ð½Ð¾ Ð¾Ð´Ð½Ð¾ Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ðµ ÑÐ¿Ð¸ÑÐºÐ°, Ð² Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ð¸ Ð±ÑƒÐ´ÐµÑ‚ ÑÑ‚Ñ€Ð¾ÐºÐ°, Ð° Ð½Ðµ Ð¼Ð°ÑÑÐ¸Ð², Ð° $obCond->Generate() ÑÐ¼Ð¾Ñ‚Ñ€Ð¸Ñ‚ ID Ð·Ð½Ð°Ñ‡ÐµÐ½Ð¸Ñ Ð² Ð¼Ð°ÑÑÐ¸Ð²Ðµ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·ÑƒÑ in_array()
 									if($dispProp['PROPERTY_TYPE'] == 'L') {
 										if($dispProp['VALUE_ENUM_ID'] && is_string($dispProp['VALUE_ENUM_ID'])) {
 											$dispProp['VALUE'] = array($dispProp['VALUE_ENUM_ID']);
@@ -696,7 +696,7 @@ class Property
 
 		$propertyCodes = array_fill_keys($propertyCodes, true);
 
-		//TODO: Èñïðàâèòü ïîëó÷åíèå âñåõ ñâîéñòâ èíôîáëîêà èëè âîîáùå óáðàòü ïðîâåðêó
+		//TODO: Ð˜ÑÐ¿Ñ€Ð°Ð²Ð¸Ñ‚ÑŒ Ð¿Ð¾Ð»ÑƒÑ‡ÐµÐ½Ð¸Ðµ Ð²ÑÐµÑ… ÑÐ²Ð¾Ð¹ÑÑ‚Ð² Ð¸Ð½Ñ„Ð¾Ð±Ð»Ð¾ÐºÐ° Ð¸Ð»Ð¸ Ð²Ð¾Ð¾Ð±Ñ‰Ðµ ÑƒÐ±Ñ€Ð°Ñ‚ÑŒ Ð¿Ñ€Ð¾Ð²ÐµÑ€ÐºÑƒ
 		$propertyIterator = Iblock\PropertyTable::getList(array(
 			 'select' => array('ID', 'CODE'),
 			 'filter' => array('=IBLOCK_ID' => $iblock, '=ACTIVE' => 'Y'),

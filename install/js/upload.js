@@ -5,7 +5,7 @@
 
 	"use strict";
 
-	// Настройки по умолчанию
+	// РќР°СЃС‚СЂРѕР№РєРё РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	var defaults = {
 		formId: '',
 		url: document.URL,
@@ -146,7 +146,7 @@
 			return true;
 		},
 
-		//Запускает загрузку файла
+		//Р—Р°РїСѓСЃРєР°РµС‚ Р·Р°РіСЂСѓР·РєСѓ С„Р°Р№Р»Р°
 		submitFile: function (fileListID, options) {
 			fileListID.find('li:not(.api_error)').each(function () {
 				var progress = $(this).find('.api_progress');
@@ -158,7 +158,7 @@
 			});
 		},
 
-		//Отображает превью выбранных файлов
+		//РћС‚РѕР±СЂР°Р¶Р°РµС‚ РїСЂРµРІСЊСЋ РІС‹Р±СЂР°РЅРЅС‹С… С„Р°Р№Р»РѕРІ
 		displayFiles: function (fileListID, files) {
 
 			fileListID.show();
@@ -185,18 +185,18 @@
 
 				$(html_2).appendTo(li);
 
-				//Помещаем в объект списка выбранный файл
+				//РџРѕРјРµС‰Р°РµРј РІ РѕР±СЉРµРєС‚ СЃРїРёСЃРєР° РІС‹Р±СЂР°РЅРЅС‹Р№ С„Р°Р№Р»
 				li.get(0).file = file;
 			});
 		},
 
-		//Форматирует размер файла
+		//Р¤РѕСЂРјР°С‚РёСЂСѓРµС‚ СЂР°Р·РјРµСЂ С„Р°Р№Р»Р°
 		formatFileSize: function(size) {
 			var i = Math.floor( Math.log(size) / Math.log(1024) );
 			return ( size / Math.pow(1024, i) ).toFixed() * 1 + '&nbsp;' + ['B', 'KB', 'MB', 'GB', 'TB'][i];
 		},
 
-		//Загружает файл на сервер
+		//Р—Р°РіСЂСѓР¶Р°РµС‚ С„Р°Р№Р» РЅР° СЃРµСЂРІРµСЂ
 		xhrUpload: function (settings, progress, node) {
 
 			if (!node.file) {
@@ -262,16 +262,16 @@
 				$(node).addClass('api_error');
 				settings.callback.onError.call(settings, node, self.errors);
 				return false;
-				//Как вариант, когда неизвестно колич. параметров
+				//РљР°Рє РІР°СЂРёР°РЅС‚, РєРѕРіРґР° РЅРµРёР·РІРµСЃС‚РЅРѕ РєРѕР»РёС‡. РїР°СЂР°РјРµС‚СЂРѕРІ
 				//settings.callback.onError.apply(settings, [node, self.errors]);
 			}
 
 
 			/////////////////////////////////////////////////////////////////////////
-			//Отслеживание событий "исходящего"  процесса загрузки (loadstart,timeout)
+			//РћС‚СЃР»РµР¶РёРІР°РЅРёРµ СЃРѕР±С‹С‚РёР№ "РёСЃС…РѕРґСЏС‰РµРіРѕ"  РїСЂРѕС†РµСЃСЃР° Р·Р°РіСЂСѓР·РєРё (loadstart,timeout)
 			/////////////////////////////////////////////////////////////////////////
 
-			// состояние передачи от сервера к клиенту (загрузка)
+			// СЃРѕСЃС‚РѕСЏРЅРёРµ РїРµСЂРµРґР°С‡Рё РѕС‚ СЃРµСЂРІРµСЂР° Рє РєР»РёРµРЅС‚Сѓ (Р·Р°РіСЂСѓР·РєР°)
 			xhr.upload.addEventListener("progress", function (e) {
 				if (e.lengthComputable) {
 					self.percent = (e.loaded / e.total) * 100;
@@ -281,20 +281,20 @@
 					settings.callback.onUploadProgress(progress, e, self.percent_round);
 				}
 				else {
-					//Невозможно вычислить состояние загрузки, так как размер неизвестен
+					//РќРµРІРѕР·РјРѕР¶РЅРѕ РІС‹С‡РёСЃР»РёС‚СЊ СЃРѕСЃС‚РѕСЏРЅРёРµ Р·Р°РіСЂСѓР·РєРё, С‚Р°Рє РєР°Рє СЂР°Р·РјРµСЂ РЅРµРёР·РІРµСЃС‚РµРЅ
 					settings.callback.onUploadProgress(progress, e, 0);
 					//console.error('progress','Size unknown');
 				}
 			}, false);
 
-			//Загрузка завершена
+			//Р—Р°РіСЂСѓР·РєР° Р·Р°РІРµСЂС€РµРЅР°
 			xhr.upload.addEventListener("load", function (e) {
 				self.uploaded = true;
 				settings.callback.onLoad(node, e);
 				//if(settings.callback.onLoad instanceof Function) {}
 			}, false);
 
-			//При загрузке файла произошла ошибка
+			//РџСЂРё Р·Р°РіСЂСѓР·РєРµ С„Р°Р№Р»Р° РїСЂРѕРёР·РѕС€Р»Р° РѕС€РёР±РєР°
 			xhr.upload.addEventListener("error", function (e) {
 				self.lastError = {
 					code: 1,
@@ -304,22 +304,22 @@
 
 			}, false);
 
-			//Пользователь отменил загрузку
+			//РџРѕР»СЊР·РѕРІР°С‚РµР»СЊ РѕС‚РјРµРЅРёР» Р·Р°РіСЂСѓР·РєСѓ
 			xhr.upload.addEventListener("abort", function(e) {
 				settings.callback.onAbort.call(settings, node, e);
 				//console.error('abort','Abort uploading on server');
 			}, false);
 
-			//Начало загрузки
+			//РќР°С‡Р°Р»Рѕ Р·Р°РіСЂСѓР·РєРё
 			xhr.upload.addEventListener("loadstart", function(e) {
-				//Передача данных завершена (но мы не знаем, успешно ли)
+				//РџРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С… Р·Р°РІРµСЂС€РµРЅР° (РЅРѕ РјС‹ РЅРµ Р·РЅР°РµРј, СѓСЃРїРµС€РЅРѕ Р»Рё)
 				settings.callback.onLoadStart.call(settings, node, e);
 				//console.info('loadstart','Data transfer complete');
 			}, false);
 
-			//Также возможно засечь все три события, завершающие загрузку (abort, load, or error) через событие loadend:
+			//РўР°РєР¶Рµ РІРѕР·РјРѕР¶РЅРѕ Р·Р°СЃРµС‡СЊ РІСЃРµ С‚СЂРё СЃРѕР±С‹С‚РёСЏ, Р·Р°РІРµСЂС€Р°СЋС‰РёРµ Р·Р°РіСЂСѓР·РєСѓ (abort, load, or error) С‡РµСЂРµР· СЃРѕР±С‹С‚РёРµ loadend:
 			xhr.upload.addEventListener("loadend", function(e) {
-				//Передача данных завершена (но мы не знаем, успешно ли)
+				//РџРµСЂРµРґР°С‡Р° РґР°РЅРЅС‹С… Р·Р°РІРµСЂС€РµРЅР° (РЅРѕ РјС‹ РЅРµ Р·РЅР°РµРј, СѓСЃРїРµС€РЅРѕ Р»Рё)
 				settings.callback.onLoadEnd.call(settings, node, e);
 				//console.error('loadend','Data transfer complete');
 			}, false);
@@ -341,7 +341,7 @@
 				formData.append(p, settings.extraData[p]);
 			}
 
-			//Действия после загрузки файлов
+			//Р”РµР№СЃС‚РІРёСЏ РїРѕСЃР»Рµ Р·Р°РіСЂСѓР·РєРё С„Р°Р№Р»РѕРІ
 			//https://developer.mozilla.org/ru/docs/Web/API/XMLHttpRequest/onreadystatechange
 			xhr.onreadystatechange = function () {
 
@@ -350,10 +350,10 @@
 				 console.log(xhr.responseText);
 				 };*/
 
-				//Файл полностью загружен
+				//Р¤Р°Р№Р» РїРѕР»РЅРѕСЃС‚СЊСЋ Р·Р°РіСЂСѓР¶РµРЅ
 				if (xhr.readyState === XMLHttpRequest.DONE) {
 
-					//Действия после успешной загрузки
+					//Р”РµР№СЃС‚РІРёСЏ РїРѕСЃР»Рµ СѓСЃРїРµС€РЅРѕР№ Р·Р°РіСЂСѓР·РєРё
 					//https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest/status
 					if (xhr.status === 200) {
 						if (!self.uploaded) {
@@ -365,7 +365,7 @@
 							settings.callback.onUploadSuccess.call(settings, progress);
 						}
 
-						// Действия после ошибки загрузки
+						// Р”РµР№СЃС‚РІРёСЏ РїРѕСЃР»Рµ РѕС€РёР±РєРё Р·Р°РіСЂСѓР·РєРё
 					} else {
 						self.lastError = {
 							code: xhr.status,
@@ -404,7 +404,7 @@
 			//The append(name, value) and append(name, blobValue, filename) methods, when invoked, must run these steps:
 			formData.append((settings.fileName || 'file'), node.file);
 
-			//xhr.abort() обрывает текущий запрос.
+			//xhr.abort() РѕР±СЂС‹РІР°РµС‚ С‚РµРєСѓС‰РёР№ Р·Р°РїСЂРѕСЃ.
 			xhr.send(formData);
 		},
 

@@ -28,7 +28,7 @@ abstract class Element extends Base
 	{
 		$params = parent::onPrepareComponentParams($params);
 
-		//Ïàðàìåòðû ïðîôèëÿ
+		//ÐŸÐ°Ñ€Ð°Ð¼ÐµÑ‚Ñ€Ñ‹ Ð¿Ñ€Ð¾Ñ„Ð¸Ð»Ñ
 		if($params['PROFILE'])
 			$this->profile = (array)$params['PROFILE'];
 
